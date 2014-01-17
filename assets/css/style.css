@@ -43,20 +43,19 @@ header h1 {
 }
 
 /* code colors*/
-
-.code-java {
+.code-1 {
     background: #16a085;    
 }
 
-.code-js {
+.code-2 {
     background: #2980b9;
 }
 
-.code-php {
+.code-3 {
     background: #34495e;
 }
 
-.code-python {
+.code-4 {
     background: #c0392b
 }
 

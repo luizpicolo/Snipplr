@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    
     $('.show-snipplr').click(function(){
         
         var title = $(this).children('h1').text();
@@ -40,10 +41,10 @@ $(document).ready(function(){
                             '<p>asdfas</p>' +
                         '</div>' +
                         '<div class="modal-body">' +
-                            '<form role="form">' +
+                            '<form method="post" id="code-snipplr" action="">' +
                               '<div class="form-group">' +
                                 '<label for="titulo">Titulo</label>' +
-                                '<input type="text" class="form-control" name="titulo" id="titulo" placeholder="Titulo">' +
+                                '<input type="text" class="form-control" name="titulo" id="titulo" placeholder="Titulo" required>' +
                               '</div>' +
                               '<div class="form-group">' +
                                 '<label for="descricao">Descrição</label>' +
@@ -63,11 +64,8 @@ $(document).ready(function(){
                                 '<label for="codigo">Código</label>' +
                                 '<textarea class="form-control"  id="codigo" name="codigo" rows="3"></textarea>' +
                               '</div>' +
+                              '<input type="submit" class="btn btn-primary" value="Cadastrar">' +
                             '</form>' +
-                        '</div>' +
-                        '<div class="modal-footer">' +
-                            '<button type="submit" class="btn btn-primary">Cadastrar</button>' +
-                            '<button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>' +
                         '</div>' +
                     '</div>' +
                    '</div>';
@@ -76,4 +74,41 @@ $(document).ready(function(){
           keyboard: false
         });    
     })
+        
+    $("form").live("submit", function(e) {
+        e.preventDefault();
+        var array = $(this).serializeArray();
+        var obj = {
+            "titulo": array[0].value,
+            "descricao": array[1].value,
+            "categoria": array[2].value,
+            "codigo": array[4].value
+        };
+        
+        dados.push(localStorage.getItem('snipplr'));
+        dados.push(obj);
+        localStorage.setItem('snipplr', dados);
+    });
+    
+//    var objs = localStorage.getItem('snipplr');
+//    
+//    console.log(objs);
+//    
+//    for (var i = 0; i < objs.length; i+=1){
+//        html += '<div class="col-md-3 code-'+objs[i].nome+'">' +
+//                    '<section class="show-snipplr">' +
+//                        '<h1><i class="fa fa-code"></i> Código Java</h1>' +
+//                        '<p>Descrição</p>' +
+//                    '</section>' +
+//                '</div>';    
+//    }
+//    
+//    $('.row').html(html);
 })
+
+
+
+
+
+
+
