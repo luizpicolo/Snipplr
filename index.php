@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
     <title>Snipplr</title>
+    
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700|Indie+Flower' rel='stylesheet' type='text/css'>
     
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
