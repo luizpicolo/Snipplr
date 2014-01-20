@@ -1,62 +1,64 @@
-$(document).ready(function(){
-    
-    // Recebe um String, converte para JSON e incorpora na arvore DOM
-    var snipplr = function(string){
-        if (string){
-            var objs = JSON.parse("[" + string + "]");
-            if (objs.length){
-                var html = "";
-                for (var i = 0; i < objs.length; i+=1){
-                    html += '<div class="col-md-3 code-'+objs[i].categoria+'">' +
-                                '<section class="show-snipplr">' +
-                                    '<h1>'+objs[i].titulo+'</h1>' +
-                                    '<p>'+objs[i].descricao+'</p>' +
-                                    '<code>'+objs[i].codigo+'</code>' +
-                                '</section>' +
-                            '</div>';    
-                }
-                $('.row').html(html);
+// Recebe um String, converte para JSON e incorpora na arvore DOM
+var snipplr = function(string){
+    if (string){
+        var objs = JSON.parse("[" + string + "]");
+        if (objs.length){
+            var html = "";
+            for (var i = 0; i < objs.length; i+=1){
+                html += '<div class="col-md-3 code-'+objs[i].categoria+'">' +
+                            '<section class="show-snipplr">' +
+                                '<h1>'+objs[i].titulo+'</h1>' +
+                                '<p>'+objs[i].descricao+'</p>' +
+                                '<code>'+objs[i].codigo+'</code>' +
+                            '</section>' +
+                        '</div>';    
             }
+            $('.row').html(html);
         }
+    } else {
+        $('.row').html("Não há Snnipts cadastrados.");
     }
+}
 
-    // Mensagem 
-    var alertMSG = function(string, type){
-        switch (type){
-            case 1 :
-                $('#alertMSG').html(
-                    '<div class="alert alert-success">'+string+'</div>'
-                );
-                setInterval(function(){
-                    $('.alert').fadeOut('slow');    
-                },3000);
-                break;
-            case 2 :
-                $('#alertMSG').html(
-                    '<div class="alert alert-info">'+string+'</div>'
-                );
-                setInterval(function(){
-                    $('.alert').fadeOut('slow');    
-                }, 3000);
-                break;
-            case 3 :
-                $('#alertMSG').html(
-                    '<div class="alert alert-warning">'+string+'</div>'
-                );
-                setInterval(function(){
-                    $('.alert').fadeOut('slow');    
-                }, 3000);
-                break;
-            case 4 :
-                $('#alertMSG').html(
-                    '<div class="alert alert-danger">'+string+'</div>'
-                );
-                setInterval(function(){
-                    $('.alert').fadeOut('slow');    
-                }, 3000);
+// Mensagem 
+var alertMSG = function(string, type){
+    switch (type){
+        case 1 :
+            $('#alertMSG').html(
+                '<div class="alert alert-success">'+string+'</div>'
+            );
+            setInterval(function(){
+                $('.alert').fadeOut('slow');    
+            },3000);
             break;
-        }    
-    }
+        case 2 :
+            $('#alertMSG').html(
+                '<div class="alert alert-info">'+string+'</div>'
+            );
+            setInterval(function(){
+                $('.alert').fadeOut('slow');    
+            }, 3000);
+            break;
+        case 3 :
+            $('#alertMSG').html(
+                '<div class="alert alert-warning">'+string+'</div>'
+            );
+            setInterval(function(){
+                $('.alert').fadeOut('slow');    
+            }, 3000);
+            break;
+        case 4 :
+            $('#alertMSG').html(
+                '<div class="alert alert-danger">'+string+'</div>'
+            );
+            setInterval(function(){
+                $('.alert').fadeOut('slow');    
+            }, 3000);
+        break;
+    }    
+}
+
+$(document).ready(function(){
     
     // Carrega o conteúdo do localStorage
     snipplr(localStorage.getItem('snipplr'));
@@ -95,7 +97,6 @@ $(document).ready(function(){
                         '<div class="modal-header">' +
                             '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' +
                             '<h1 class="modal-title">Cadastrar Snipplr</h1>' +
-                            '<p>asdfas</p>' +
                         '</div>' +
                         '<div class="modal-body">' +
                             '<form method="post" id="code-snipplr" action="">' +
@@ -127,6 +128,12 @@ $(document).ready(function(){
                    '</div>';
         
         $(".modal").html(form).modal({keyboard: false});    
+    })
+    
+    $('#clear-snipplr').click(function(){
+        localStorage.clear();
+        alertMSG('Snipplr excluidos com sucesso', 1);
+        snipplr(localStorage.getItem('snipplr'));
     })
         
     $("form").live("submit", function(e) {

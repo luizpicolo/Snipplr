@@ -21,12 +21,11 @@
         <h1>Snipplr</h1>
     </header>   
     <main>
-        <div class="text-right">
+        <div class="text-right"> 
             <button type="button" class="btn btn-primary" id="registering-snipplr">Cadastrar Snipplr</button>
+            <button type="button" class="btn btn-danger" id="clear-snipplr">Excluir Snipplrs</button>
         </div>
-        <div class="row">
-            Não há Snnipts cadastrados.
-        </div>  
+        <div class="row"></div>  
     </main> 
     <div class="modal"></div>
     <div id="alertMSG"></div>
