@@ -131,8 +131,15 @@ $(document).ready(function(){
     })
     
     $('#clear-snipplr').click(function(){
-        localStorage.clear();
-        alertMSG('Snipplr excluidos com sucesso', 1);
+        if (localStorage.getItem('snipplr')){
+            if (confirm("Deletar todos os Snipplrs?")){
+                localStorage.clear();
+                alertMSG('Snipplr excluidos com sucesso', 1);
+            }
+        } else {
+            alertMSG('Não há Snipplr para serem deletados', 2);    
+        }
+        
         snipplr(localStorage.getItem('snipplr'));
     })
         
