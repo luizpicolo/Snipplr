@@ -1,12 +1,71 @@
 $(document).ready(function(){
     
-    $('.show-snipplr').click(function(){
+    // Recebe um String, converte para JSON e incorpora na arvore DOM
+    var snipplr = function(string){
+        if (string){
+            var objs = JSON.parse("[" + string + "]");
+            if (objs.length){
+                var html = "";
+                for (var i = 0; i < objs.length; i+=1){
+                    html += '<div class="col-md-3 code-'+objs[i].categoria+'">' +
+                                '<section class="show-snipplr">' +
+                                    '<h1>'+objs[i].titulo+'</h1>' +
+                                    '<p>'+objs[i].descricao+'</p>' +
+                                    '<code>'+objs[i].codigo+'</code>' +
+                                '</section>' +
+                            '</div>';    
+                }
+                $('.row').html(html);
+            }
+        }
+    }
+
+    // Mensagem 
+    var alertMSG = function(string, type){
+        switch (type){
+            case 1 :
+                $('#alertMSG').html(
+                    '<div class="alert alert-success">'+string+'</div>'
+                );
+                setInterval(function(){
+                    $('.alert').fadeOut('slow');    
+                },3000);
+                break;
+            case 2 :
+                $('#alertMSG').html(
+                    '<div class="alert alert-info">'+string+'</div>'
+                );
+                setInterval(function(){
+                    $('.alert').fadeOut('slow');    
+                }, 3000);
+                break;
+            case 3 :
+                $('#alertMSG').html(
+                    '<div class="alert alert-warning">'+string+'</div>'
+                );
+                setInterval(function(){
+                    $('.alert').fadeOut('slow');    
+                }, 3000);
+                break;
+            case 4 :
+                $('#alertMSG').html(
+                    '<div class="alert alert-danger">'+string+'</div>'
+                );
+                setInterval(function(){
+                    $('.alert').fadeOut('slow');    
+                }, 3000);
+            break;
+        }    
+    }
+    
+    // Carrega o conteúdo do localStorage
+    snipplr(localStorage.getItem('snipplr'));
+    
+    $('.show-snipplr').live("click", function(){
         
         var title = $(this).children('h1').text();
         var description = $(this).children('p').text();
-        var code = '&lt;table class="tabela"&gt;' +
-                   '...' + 
-                   '&lt;/table&gt;';
+        var code = $(this).children('code').text();
         
         var modal = '<div class="modal-dialog">'+
                     '<div class="modal-content">' +
@@ -26,9 +85,7 @@ $(document).ready(function(){
         
         
         
-        $(".modal").html(modal).modal({
-          keyboard: false
-        });
+        $(".modal").html(modal).modal({keyboard: false});
     })
     
     $('#registering-snipplr').click(function(){
@@ -53,11 +110,10 @@ $(document).ready(function(){
                               '<div class="form-group">' +
                                 '<label for="categoria">Categoria</label>' +
                                 '<select id="categoria" name="categoria" class="form-control">' +
-                                  '<option>1</option>' +
-                                  '<option>2</option>' +
-                                  '<option>3</option>' +
-                                  '<option>4</option>' +
-                                  '<option>5</option>' +
+                                  '<option value="1">PHP</option>' +
+                                  '<option value="2">Java</option>' +
+                                  '<option value="3">Ruby</option>' +
+                                  '<option value="4">JavaScript</option>' +
                                 '</select>' +
                               '</div>' +
                               '<div class="form-group">' +
@@ -70,40 +126,31 @@ $(document).ready(function(){
                     '</div>' +
                    '</div>';
         
-        $(".modal").html(form).modal({
-          keyboard: false
-        });    
+        $(".modal").html(form).modal({keyboard: false});    
     })
         
     $("form").live("submit", function(e) {
-        e.preventDefault();
+        e.preventDefault();  
         var array = $(this).serializeArray();
+        var dados = "";
         var obj = {
             "titulo": array[0].value,
             "descricao": array[1].value,
             "categoria": array[2].value,
-            "codigo": array[4].value
+            "codigo": array[3].value
         };
         
-        dados.push(localStorage.getItem('snipplr'));
-        dados.push(obj);
+        if (localStorage.getItem('snipplr')){
+            dados = localStorage.getItem('snipplr') + ", " + JSON.stringify(obj);
+        } else {
+            dados = JSON.stringify(obj);
+        }
+
         localStorage.setItem('snipplr', dados);
+        snipplr(localStorage.getItem('snipplr'));
+        alertMSG('Snipplr cadastrado com sucesso', 1);
+        $(this).closest('form').find("input[type=text], textarea").val("");
     });
-    
-//    var objs = localStorage.getItem('snipplr');
-//    
-//    console.log(objs);
-//    
-//    for (var i = 0; i < objs.length; i+=1){
-//        html += '<div class="col-md-3 code-'+objs[i].nome+'">' +
-//                    '<section class="show-snipplr">' +
-//                        '<h1><i class="fa fa-code"></i> Código Java</h1>' +
-//                        '<p>Descrição</p>' +
-//                    '</section>' +
-//                '</div>';    
-//    }
-//    
-//    $('.row').html(html);
 })
 
 

@@ -17,6 +17,10 @@ header h1 {
     color: #ecf0f1;
 }
 
+.col-md-3 {
+    height: 100px;   
+}
+
 .prettyprint {
     position: relative;
     line-height: 22px;
@@ -35,11 +39,32 @@ header h1 {
     margin: 2px;
     padding: 6px;
     cursor: pointer;
+    height: 100%;
+    overflow: hidden;
 }
 
-.show-snipplr h1, .show-snipplr p {
+.show-snipplr h1, .show-snipplr i {
     font-size: 1em;
     margin: 0;
+    font-weight: bold;
+}
+
+.show-snipplr p {
+    font-size: .7em;
+    margin: 5px 0 0 0;
+}
+
+.show-snipplr code {
+    display: none;
+}
+
+/* Alerta */
+.alert {
+    position: absolute !important;
+    z-index: 1000000 !important;
+    top: 30px;
+    right: 30px;
+    
 }
 
 /* code colors*/

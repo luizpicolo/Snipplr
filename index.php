@@ -25,63 +25,11 @@
             <button type="button" class="btn btn-primary" id="registering-snipplr">Cadastrar Snipplr</button>
         </div>
         <div class="row">
-<!--
-            <div class="col-md-3 code-java">
-                <section class="show-snipplr" data-id="1">
-                    <h1><i class="fa fa-code"></i> Código Java</h1>
-                    <p>Descrição</p>
-                </section>
-            </div>
-            <div class="col-md-3 code-php">
-                <section class="show-snipplr">
-                    <h1><i class="fa fa-code"></i> Código</h1>
-                    <p>Descrição</p>
-                </section>
-            </div>
-            <div class="col-md-3 code-python">
-                <section class="show-snipplr">
-                    <h1><i class="fa fa-code"></i> Código</h1>
-                    <p>Descrição</p>
-                </section>
-            </div>
-            <div class="col-md-3 code-js">
-                <section class="show-snipplr">
-                    <h1><i class="fa fa-code"></i> Código</h1>
-                    <p>Descrição</p>
-                </section>
-            </div>
-            
-            <div class="col-md-3 code-js">
-                <section class="show-snipplr">
-                    <h1><i class="fa fa-code"></i> Código</h1>
-                    <p>Descrição</p>
-                </section>
-            </div>
-            <div class="col-md-3 code-python">
-                <section class="show-snipplr">
-                    <h1><i class="fa fa-code"></i> Código</h1>
-                    <p>Descrição</p>
-                </section>
-            </div>
-            <div class="col-md-3 code-php">
-                <section class="show-snipplr">
-                    <h1><i class="fa fa-code"></i> Código</h1>
-                    <p>Descrição</p>
-                </section>
-            </div>
-            <div class="col-md-3 code-java">
-                <section class="show-snipplr">
-                    <h1><i class="fa fa-code"></i> Código</h1>
-                    <p>Descrição</p>
-                </section>
-            </div>
--->
+            Não há Snnipts cadastrados.
         </div>  
     </main> 
-    <footer>
-        
-    </footer>
     <div class="modal"></div>
+    <div id="alertMSG"></div>
     <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
 </body>
 </html>
