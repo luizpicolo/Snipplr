@@ -1,4 +1,4 @@
-// Recebe um String, converte para JSON e incorpora na arvore DOM
+// Função para receber um String, converte para JSON e incorpora na arvore DOM
 var snipplr = function(string){
     if (string){
         var objs = JSON.parse("[" + string + "]");
@@ -14,6 +14,8 @@ var snipplr = function(string){
                         '</div>';    
             }
             $('.row').html(html);
+        } else {
+            $('.row').html("Não há Snnipts cadastrados.");
         }
     } else {
         $('.row').html("Não há Snnipts cadastrados.");
@@ -24,7 +26,7 @@ var snipplr = function(string){
 var alertMSG = function(string, type){
     switch (type){
         case 1 :
-            $('#alertMSG').html(
+            $('.alertMSG').html(
                 '<div class="alert alert-success">'+string+'</div>'
             );
             setInterval(function(){
@@ -32,7 +34,7 @@ var alertMSG = function(string, type){
             },3000);
             break;
         case 2 :
-            $('#alertMSG').html(
+            $('.alertMSG').html(
                 '<div class="alert alert-info">'+string+'</div>'
             );
             setInterval(function(){
@@ -40,7 +42,7 @@ var alertMSG = function(string, type){
             }, 3000);
             break;
         case 3 :
-            $('#alertMSG').html(
+            $('.alertMSG').html(
                 '<div class="alert alert-warning">'+string+'</div>'
             );
             setInterval(function(){
@@ -48,7 +50,7 @@ var alertMSG = function(string, type){
             }, 3000);
             break;
         case 4 :
-            $('#alertMSG').html(
+            $('.alertMSG').html(
                 '<div class="alert alert-danger">'+string+'</div>'
             );
             setInterval(function(){
@@ -60,15 +62,19 @@ var alertMSG = function(string, type){
 
 $(document).ready(function(){
     
+    $("<div />").appendTo("body").addClass("modal");
+    $("<div />").appendTo("body").addClass("alertMSG");
+    
     // Carrega o conteúdo do localStorage
     snipplr(localStorage.getItem('snipplr'));
     
+    // Retorna o conteudo dos Snipplrs cadastros do localStorage
     $('.show-snipplr').live("click", function(){
         
         var title = $(this).children('h1').text();
         var description = $(this).children('p').text();
         var code = $(this).children('code').text();
-        
+                
         var modal = '<div class="modal-dialog">'+
                     '<div class="modal-content">' +
                         '<div class="modal-header">' +
@@ -77,16 +83,14 @@ $(document).ready(function(){
                             '<p>'+description+'</p>' +
                         '</div>' +
                         '<div class="modal-body">' +
-                            '<pre class="prettyprint lang-scm">'+code+'</pre>' +
+                            '<pre>'+code+'</pre>' +
                         '</div>' +
                         '<div class="modal-footer">' +
                             '<button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>' +
                         '</div>' +
                     '</div>' +
                    '</div>';
-        
-        
-        
+
         $(".modal").html(modal).modal({keyboard: false});
     })
     
@@ -134,10 +138,10 @@ $(document).ready(function(){
         if (localStorage.getItem('snipplr')){
             if (confirm("Deletar todos os Snipplrs?")){
                 localStorage.clear();
-                alertMSG('Snipplr excluidos com sucesso', 1);
+                alertMSG('Snipplrs excluidos com sucesso', 1);
             }
         } else {
-            alertMSG('Não há Snipplr para serem deletados', 2);    
+            alertMSG('Não há Snipplrs para serem deletados', 2);    
         }
         
         snipplr(localStorage.getItem('snipplr'));
@@ -166,10 +170,3 @@ $(document).ready(function(){
         $(this).closest('form').find("input[type=text], textarea").val("");
     });
 })
-
-
-
-
-
-
-

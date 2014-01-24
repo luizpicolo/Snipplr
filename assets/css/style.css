@@ -43,7 +43,7 @@ header h1 {
     overflow: hidden;
 }
 
-.show-snipplr h1, .show-snipplr i {
+.show-snipplr h1 {
     font-size: 1em;
     margin: 0;
     font-weight: bold;
@@ -61,15 +61,19 @@ header h1 {
 /* Alerta */
 .alert {
     position: absolute !important;
-    z-index: 1000000 !important;
+    z-index: 100000000 !important; /* Isso foi uma gambiarra terrivel :D */
     top: 30px;
     right: 30px;
     
 }
 
 /* code colors*/
+.code-1, .code-2, .code-3, .code-4 {
+    border: 2px solid #bdc3c7;
+}
+
 .code-1 {
-    background: #16a085;    
+    background: #16a085; 
 }
 
 .code-2 {
@@ -77,28 +81,15 @@ header h1 {
 }
 
 .code-3 {
-    background: #34495e;
+    background: #669900;
 }
 
 .code-4 {
-    background: #d9534f
+    background: #34495e;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+footer h1 {
+    font-size: 1em;
+    color: #16a085;
+    text-align: center;
+}

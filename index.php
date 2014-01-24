@@ -27,8 +27,8 @@
         </div>
         <div class="row"></div>  
     </main> 
-    <div class="modal"></div>
-    <div id="alertMSG"></div>
-    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+    <footer>
+        <h1>Copyright © 2014 · Luiz Picolo</h1>
+    </footer>
 </body>
 </html>
