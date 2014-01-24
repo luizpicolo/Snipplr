@@ -22,8 +22,12 @@ var snipplr = function(string){
     }
 }
 
-// Mensagem 
+// Apresta mensagem para o usuario 
 var alertMSG = function(string, type){
+    
+    // Tempo de fechamento da mensagem
+    var timeClose = 4000;
+    
     switch (type){
         case 1 :
             $('.alertMSG').html(
@@ -31,7 +35,7 @@ var alertMSG = function(string, type){
             );
             setInterval(function(){
                 $('.alert').fadeOut('slow');    
-            },3000);
+            },timeClose);
             break;
         case 2 :
             $('.alertMSG').html(
@@ -39,7 +43,7 @@ var alertMSG = function(string, type){
             );
             setInterval(function(){
                 $('.alert').fadeOut('slow');    
-            }, 3000);
+            }, timeClose);
             break;
         case 3 :
             $('.alertMSG').html(
@@ -47,7 +51,7 @@ var alertMSG = function(string, type){
             );
             setInterval(function(){
                 $('.alert').fadeOut('slow');    
-            }, 3000);
+            }, timeClose);
             break;
         case 4 :
             $('.alertMSG').html(
@@ -55,13 +59,14 @@ var alertMSG = function(string, type){
             );
             setInterval(function(){
                 $('.alert').fadeOut('slow');    
-            }, 3000);
+            }, timeClose);
         break;
     }    
 }
 
 $(document).ready(function(){
     
+    // Adiciona elementos não pertecentes a semântica do código
     $("<div />").appendTo("body").addClass("modal");
     $("<div />").appendTo("body").addClass("alertMSG");
     
@@ -71,11 +76,12 @@ $(document).ready(function(){
     // Retorna o conteudo dos Snipplrs cadastros do localStorage
     $('.show-snipplr').live("click", function(){
         
+        // Coleta os dados das tags h1, p e CODE
         var title = $(this).children('h1').text();
         var description = $(this).children('p').text();
         var code = $(this).children('code').text();
                 
-        var modal = '<div class="modal-dialog">'+
+        var view = '<div class="modal-dialog">'+
                     '<div class="modal-content">' +
                         '<div class="modal-header">' +
                             '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' +
@@ -91,11 +97,13 @@ $(document).ready(function(){
                     '</div>' +
                    '</div>';
 
-        $(".modal").html(modal).modal({keyboard: false});
+        // Incorpora o html das visualizações do codigo no modal
+        $(".modal").html(view).modal({keyboard: false});
     })
     
+    // Carrega o formulário para novos cadastros
     $('#registering-snipplr').click(function(){
-        
+            
          var form = '<div class="modal-dialog">'+
                     '<div class="modal-content">' +
                         '<div class="modal-header">' +
@@ -131,10 +139,14 @@ $(document).ready(function(){
                     '</div>' +
                    '</div>';
         
+        // Incorpora o form no modal
         $(".modal").html(form).modal({keyboard: false});    
     })
     
     $('#clear-snipplr').click(function(){
+        
+        // Verifica se há dados no localStorage a serem deletados
+        // Se verdadeiro limpa, caso não, mostra um mensagem informativa
         if (localStorage.getItem('snipplr')){
             if (confirm("Deletar todos os Snipplrs?")){
                 localStorage.clear();
@@ -144,11 +156,15 @@ $(document).ready(function(){
             alertMSG('Não há Snipplrs para serem deletados', 2);    
         }
         
+        // Carrega os dados e monta a apresentação dos Snnipers
         snipplr(localStorage.getItem('snipplr'));
     })
-        
+      
+    // Executa ao submiter o formulario
     $("form").live("submit", function(e) {
         e.preventDefault();  
+        
+        // Retorna os dadoso do formulário e cria o objeto JSOn
         var array = $(this).serializeArray();
         var dados = "";
         var obj = {
@@ -158,15 +174,24 @@ $(document).ready(function(){
             "codigo": array[3].value
         };
         
+        // Verifica se o elemento inserido é o primeiro
         if (localStorage.getItem('snipplr')){
             dados = localStorage.getItem('snipplr') + ", " + JSON.stringify(obj);
         } else {
             dados = JSON.stringify(obj);
         }
-
+        
+        // Salva os dados no localStorage
         localStorage.setItem('snipplr', dados);
+        
+        // Retorna os dados salvos e atualiza as elementos
         snipplr(localStorage.getItem('snipplr'));
+        
+        // Mostra a mensagem de sucesso
         alertMSG('Snipplr cadastrado com sucesso', 1);
-        $(this).closest('form').find("input[type=text], textarea").val("");
+        
+        // Remove a modal e acrescenta novamente o elemento div modal
+        $('.in').fadeOut('5000');
+        $("<div />").appendTo("body").addClass("modal");
     });
 })

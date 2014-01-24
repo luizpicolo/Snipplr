@@ -60,7 +60,7 @@ header h1 {
 
 /* Alerta */
 .alert {
-    position: absolute !important;
+    position: fixed!important;
     z-index: 100000000 !important; /* Isso foi uma gambiarra terrivel :D */
     top: 30px;
     right: 30px;
