@@ -98,7 +98,7 @@ $(document).ready(function(){
                    '</div>';
 
         // Incorpora o html das visualizações do codigo no modal
-        $(".modal").html(view).modal({keyboard: false});
+        $(".modal").html(view).fadeIn('3000').modal({keyboard: false});
     })
     
     // Carrega o formulário para novos cadastros
@@ -140,7 +140,7 @@ $(document).ready(function(){
                    '</div>';
         
         // Incorpora o form no modal
-        $(".modal").html(form).modal({keyboard: false});    
+        $(".modal").html(form).fadeIn('3000').modal({keyboard: false});    
     })
     
     $('#clear-snipplr').click(function(){
