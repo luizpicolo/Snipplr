@@ -10,6 +10,6 @@ O mesmo foi desenvolvido utiliznado [webStorage](http://www.w3schools.com/html/h
 
 #License
 
-Snipplr é um software distribuido de forma desenvolvido livre sob a licençca [MIT license](http://luizpicolo.mit-license.org).
+Snipplr é um software desenvolvido e distribuido de forma livre sob a licençca [MIT license](http://luizpicolo.mit-license.org).
 
 
